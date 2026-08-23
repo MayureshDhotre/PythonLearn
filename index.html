@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Python Cheat Sheet</title>
+
+<style>
+/* =========================================================
+   RESET & GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef2f6;
+    color: #202124;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+    max-width: 1450px;
+    margin: auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    background: linear-gradient(135deg, #306998, #24557c);
+    color: white;
+    padding: 22px 25px;
+    border-radius: 14px;
+    margin-bottom: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-box {
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    border: 1px solid #ccd4dc;
+    border-radius: 7px;
+
+    padding: 10px 13px;
+
+    font-size: 14px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #306998;
+    box-shadow: 0 0 0 2px rgba(48,105,152,0.12);
+}
+
+
+/* =========================================================
+   QUICK NAVIGATION
+========================================================= */
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #306998;
+    background: #edf5fb;
+
+    padding: 6px 10px;
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.nav a:hover {
+    background: #306998;
+    color: white;
+}
+
+
+/* =========================================================
+   CHEAT SHEET GRID
+========================================================= */
+
+.cheat-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    align-items: start;
+}
+
+
+/* =========================================================
+   SECTION CARD
+========================================================= */
+
+.section {
+    background: white;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+    border: 1px solid #e0e5ea;
+}
+
+.section-title {
+    background: #ffd343;
+    color: #222;
+
+    padding: 9px 12px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-number {
+    background: rgba(0,0,0,0.10);
+
+    padding: 2px 7px;
+    border-radius: 20px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CHEAT ROW
+========================================================= */
+
+.item {
+    display: grid;
+
+    grid-template-columns: 135px minmax(200px, 1fr);
+
+    gap: 10px;
+
+    padding: 9px 10px;
+
+    border-bottom: 1px solid #edf0f2;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item:hover {
+    background: #f8fbfd;
+}
+
+.item-name {
+    font-weight: bold;
+    color: #306998;
+    font-size: 13px;
+}
+
+.item-description {
+    grid-column: 2;
+
+    color: #555;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   CODE
+========================================================= */
+
+.code {
+    grid-column: 2;
+
+    background: #20252b;
+    color: #f1f3f5;
+
+    padding: 7px 9px;
+
+    border-radius: 5px;
+
+    font-family: Consolas, "Courier New", monospace;
+
+    font-size: 12px;
+    line-height: 1.35;
+
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   INLINE CODE
+========================================================= */
+
+code {
+    background: #eef1f4;
+    color: #c7254e;
+
+    padding: 2px 5px;
+
+    border-radius: 4px;
+
+    font-family: Consolas, monospace;
+}
+
+
+/* =========================================================
+   TIPS
+========================================================= */
+
+.tip {
+    background: #e8f4fd;
+
+    border-left: 4px solid #306998;
+
+    padding: 10px 12px;
+
+    margin: 15px 0;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    margin-top: 15px;
+
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .cheat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    body {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .header {
+        padding: 18px;
+    }
+
+    .header h1 {
+        font-size: 23px;
+    }
+
+    .item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .code,
+    .item-description {
+        grid-column: 1;
+    }
+
+    .nav {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print {
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .search-box,
+    .nav {
+        display: none;
+    }
+
+    .cheat-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .section {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+
+    .code {
+        color: black;
+        background: #f5f5f5;
+        border: 1px solid #ccc;
+    }
+
+    .header {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .section-title {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- =======================================================
+     HEADER
+======================================================== -->
+
+<header class="header">
+
+    <div>
+        <h1>🐍 Python Cheat Sheet</h1>
+        <p>Quick Reference Guide for Python Programming</p>
+    </div>
+
+    <div>
+        <strong>25 Topics</strong>
+    </div>
+
+</header>
+
+
+<!-- =======================================================
+     SEARCH
+======================================================== -->
+
+<div class="search-box">
+
+    <input
+        type="search"
+        id="search"
+        placeholder="🔍 Search Python topics, syntax or functions..."
+    >
+
+</div>
+
+
+<!-- =======================================================
+     QUICK NAVIGATION
+======================================================== -->
+
+<nav class="nav">
+
+    <a href="#variables">Variables</a>
+    <a href="#datatypes">Data Types</a>
+    <a href="#io">Input / Output</a>
+    <a href="#operators">Operators</a>
+    <a href="#strings">Strings</a>
+    <a href="#lists">Lists</a>
+    <a href="#dict">Dictionaries</a>
+    <a href="#sets">Sets</a>
+    <a href="#conditions">Conditions</a>
+    <a href="#loops">Loops</a>
+    <a href="#functions">Functions</a>
+    <a href="#comprehensions">Comprehensions</a>
+    <a href="#exceptions">Exceptions</a>
+    <a href="#files">Files</a>
+    <a href="#classes">Classes</a>
+    <a href="#imports">Imports</a>
+    <a href="#builtins">Built-ins</a>
+    <a href="#patterns">Patterns</a>
+    <a href="#venv">venv & pip</a>
+    <a href="#libraries">Libraries</a>
+    <a href="#main">Main</a>
+    <a href="#debugging">Debugging</a>
+    <a href="#keywords">Keywords</a>
+
+</nav>
+
+
+<div class="tip">
+    <strong>💡 Tip:</strong>
+    Use <strong>Ctrl + F</strong> or the search box above to quickly find a topic.
+</div>
+
+
+<!-- =======================================================
+     CHEAT SHEET
+======================================================== -->
+
+<main class="cheat-grid">
+
+
+<!-- =======================================================
+     1. VARIABLES
+======================================================== -->
+
+<section class="section" id="variables">
+
+    <div class="section-title">
+        1. Variables
+        <span class="section-number">Basics</span>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Variables</div>
+
+        <div class="code">name = "Alice"
+age = 25
+height = 5.8
+is_student = True</div>
+
+        <div class="item-description">
+            Variables store values.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Multiple Assignment</div>
+
+        <div class="code">x, y = 10, 20</div>
+
+        <div class="item-description">
+            Assign multiple values at once.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Type</div>
+
+        <div class="code">type(age)</div>
+
+        <div class="item-description">
+            Returns the data type of a variable.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     2. DATA TYPES
+======================================================== -->
+
+<section class="section" id="datatypes">
+
+    <div class="section-title">
+        2. Data Types
+        <span class="section-number">Core</span>
+    </div>
+
+    <div class="item">
+        <div class="item-name">String</div>
+        <div class="code">"Hello"</div>
+        <div class="item-description">Text data.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Integer</div>
+        <div class="code">42</div>
+        <div class="item-description">Whole numbers.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Float</div>
+        <div class="code">3.14</div>
+        <div class="item-description">Decimal numbers.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Boolean</div>
+        <div class="code">True
+False</div>
+        <div class="item-description">True or false values.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">None</div>
+        <div class="code">value = None</div>
+        <div class="item-description">Represents no value.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">List</div>
+        <div class="code">[1, 2, 3]</div>
+        <div class="item-description">Ordered, mutable collection.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Tuple</div>
+        <div class="code">(1, 2, 3)</div>
+        <div class="item-description">Ordered, immutable collection.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Set</div>
+        <div class="code">{1, 2, 3}</div>
+        <div class="item-description">Collection of unique values.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Dictionary</div>
+        <div class="code">{"name": "Alice"}</div>
+        <div class="item-description">Key-value collection.</div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     3. INPUT & OUTPUT
+======================================================== -->
+
+<section class="section" id="io">
+
+    <div class="section-title">3. Input & Output</div>
+
+    <div class="item">
+        <div class="item-name">Input</div>
+
+        <div class="code">name = input("Enter name: ")
+age = int(input("Enter age: "))</div>
+
+        <div class="item-description">
+            Gets input from the user.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Print</div>
+
+        <div class="code">print("Hello", name)</div>
+
+        <div class="item-description">
+            Displays output.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">F-string</div>
+
+        <div class="code">print(f"Hello {name}")</div>
+
+        <div class="item-description">
+            Convenient string formatting.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     4. OPERATORS
+======================================================== -->
+
+<section class="section" id="operators">
+
+    <div class="section-title">4. Operators</div>
+
+    <div class="item">
+        <div class="item-name">Arithmetic</div>
+
+        <div class="code">+   -   *   /   //   %   **</div>
+
+        <div class="item-description">
+            Addition, subtraction, multiplication, division,
+            floor division, remainder and power.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Comparison</div>
+
+        <div class="code">==   !=   >   <   >=   <=</div>
+
+        <div class="item-description">
+            Compare values.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Logical</div>
+
+        <div class="code">and
+or
+not</div>
+
+        <div class="item-description">
+            Combine or invert conditions.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Assignment</div>
+
+        <div class="code">=
++=
+-=
+*=
+/=</div>
+
+        <div class="item-description">
+            Assign or update values.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     5. STRINGS
+======================================================== -->
+
+<section class="section" id="strings">
+
+    <div class="section-title">5. Strings</div>
+
+    <div class="item">
+        <div class="item-name">Create</div>
+        <div class="code">text = "Python"</div>
+        <div class="item-description">Create a string.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Length</div>
+        <div class="code">len(text)</div>
+        <div class="item-description">Returns string length.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Case</div>
+        <div class="code">text.lower()
+text.upper()</div>
+        <div class="item-description">Convert case.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Strip</div>
+        <div class="code">text.strip()</div>
+        <div class="item-description">
+            Removes leading/trailing whitespace.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Replace</div>
+        <div class="code">text.replace("Py", "My")</div>
+        <div class="item-description">Replaces text.</div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Split</div>
+        <div class="code">text.split()</div>
+        <div class="item-description">
+            Splits a string into a list.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Slicing</div>
+        <div class="code">text[0]
+text[-1]
+text[1:4]</div>
+        <div class="item-description">
+            Access characters or ranges.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     6. LISTS
+======================================================== -->
+
+<section class="section" id="lists">
+
+    <div class="section-title">6. Lists</div>
+
+    <div class="item">
+        <div class="item-name">Create</div>
+        <div class="code">numbers = [1, 2, 3]</div>
+        <div class="item-description">
+            Create an ordered collection.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Add</div>
+        <div class="code">numbers.append(4)
+numbers.insert(1, 10)</div>
+        <div class="item-description">
+            Add items to a list.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Remove</div>
+        <div class="code">numbers.remove(2)
+numbers.pop()</div>
+        <div class="item-description">
+            Remove items.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Sort</div>
+        <div class="code">numbers.sort()
+numbers.reverse()</div>
+        <div class="item-description">
+            Sort or reverse a list.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Indexing</div>
+        <div class="code">numbers[0]
+numbers[-1]
+numbers[1:3]</div>
+        <div class="item-description">
+            Access list elements.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     7. DICTIONARIES
+======================================================== -->
+
+<section class="section" id="dict">
+
+    <div class="section-title">7. Dictionaries</div>
+
+    <div class="item">
+        <div class="item-name">Create</div>
+
+        <div class="code">student = {
+    "name": "Alice",
+    "age": 20
+}</div>
+
+        <div class="item-description">
+            Store key-value pairs.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Access</div>
+
+        <div class="code">student["name"]
+student.get("age")</div>
+
+        <div class="item-description">
+            Access dictionary values.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Add / Update</div>
+
+        <div class="code">student["grade"] = "A"</div>
+
+        <div class="item-description">
+            Add or update a value.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Loop</div>
+
+        <div class="code">for key, value in student.items():
+    print(key, value)</div>
+
+        <div class="item-description">
+            Loop through key-value pairs.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     8. SETS
+======================================================== -->
+
+<section class="section" id="sets">
+
+    <div class="section-title">8. Sets</div>
+
+    <div class="item">
+        <div class="item-name">Create</div>
+        <div class="code">nums = {1, 2, 3}</div>
+        <div class="item-description">
+            Create a set of unique values.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Add / Remove</div>
+        <div class="code">nums.add(4)
+nums.remove(2)</div>
+        <div class="item-description">
+            Add or remove elements.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Union</div>
+        <div class="code">a | b</div>
+        <div class="item-description">
+            Combines two sets.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Intersection</div>
+        <div class="code">a & b</div>
+        <div class="item-description">
+            Returns common elements.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Difference</div>
+        <div class="code">a - b</div>
+        <div class="item-description">
+            Elements only in the first set.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     9. CONDITIONS
+======================================================== -->
+
+<section class="section" id="conditions">
+
+    <div class="section-title">9. Conditions</div>
+
+    <div class="item">
+
+        <div class="item-name">If / Elif / Else</div>
+
+        <div class="code">age = 18
+
+if age >= 18:
+    print("Adult")
+elif age >= 13:
+    print("Teen")
+else:
+    print("Child")</div>
+
+        <div class="item-description">
+            Execute code based on conditions.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     10. LOOPS
+======================================================== -->
+
+<section class="section" id="loops">
+
+    <div class="section-title">10. Loops</div>
+
+    <div class="item">
+
+        <div class="item-name">For Loop</div>
+
+        <div class="code">for i in range(5):
+    print(i)</div>
+
+        <div class="item-description">
+            Repeat code for each item.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">While Loop</div>
+
+        <div class="code">count = 0
+
+while count < 5:
+    print(count)
+    count += 1</div>
+
+        <div class="item-description">
+            Repeat while a condition is true.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Break</div>
+
+        <div class="code">if i == 5:
+    break</div>
+
+        <div class="item-description">
+            Exit a loop.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Continue</div>
+
+        <div class="code">if i % 2 == 0:
+    continue</div>
+
+        <div class="item-description">
+            Skip the current iteration.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     11. FUNCTIONS
+======================================================== -->
+
+<section class="section" id="functions">
+
+    <div class="section-title">11. Functions</div>
+
+    <div class="item">
+
+        <div class="item-name">Function</div>
+
+        <div class="code">def greet(name):
+    return f"Hello {name}"
+
+print(greet("Alice"))</div>
+
+        <div class="item-description">
+            Create reusable code.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Default Argument</div>
+
+        <div class="code">def power(base, exponent=2):
+    return base ** exponent</div>
+
+        <div class="item-description">
+            Arguments can have default values.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Lambda</div>
+
+        <div class="code">square = lambda x: x * x</div>
+
+        <div class="item-description">
+            Small anonymous function.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     12. COMPREHENSIONS
+======================================================== -->
+
+<section class="section" id="comprehensions">
+
+    <div class="section-title">12. Comprehensions</div>
+
+    <div class="item">
+
+        <div class="item-name">List</div>
+
+        <div class="code">squares = [x*x for x in range(10)]
+
+evens = [
+    x for x in range(20)
+    if x % 2 == 0
+]</div>
+
+        <div class="item-description">
+            Compact way to create lists.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Dictionary</div>
+
+        <div class="code">squares = {
+    x: x*x for x in range(5)
+}</div>
+
+        <div class="item-description">
+            Compact way to create dictionaries.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     13. EXCEPTIONS
+======================================================== -->
+
+<section class="section" id="exceptions">
+
+    <div class="section-title">13. Exception Handling</div>
+
+    <div class="item">
+
+        <div class="item-name">Try / Except</div>
+
+        <div class="code">try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+finally:
+    print("Done")</div>
+
+        <div class="item-description">
+            Handle runtime errors safely.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     14. FILES
+======================================================== -->
+
+<section class="section" id="files">
+
+    <div class="section-title">14. File Handling</div>
+
+    <div class="item">
+
+        <div class="item-name">Write</div>
+
+        <div class="code">with open("file.txt", "w") as f:
+    f.write("Hello")</div>
+
+        <div class="item-description">
+            Write data to a file.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Read</div>
+
+        <div class="code">with open("file.txt", "r") as f:
+    content = f.read()</div>
+
+        <div class="item-description">
+            Read file contents.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     15. CLASSES
+======================================================== -->
+
+<section class="section" id="classes">
+
+    <div class="section-title">15. Classes & Objects</div>
+
+    <div class="item">
+
+        <div class="item-name">Class</div>
+
+        <div class="code">class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def greet(self):
+        print(f"Hello, I'm {self.name}")
+
+p = Person("Alice")
+p.greet()</div>
+
+        <div class="item-description">
+            Create classes and objects using OOP.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Inheritance</div>
+
+        <div class="code">class Student(Person):
+    def study(self):
+        print("Studying")
+
+s = Student("Bob")
+s.greet()
+s.study()</div>
+
+        <div class="item-description">
+            A class can inherit functionality from another class.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     16. IMPORTS
+======================================================== -->
+
+<section class="section" id="imports">
+
+    <div class="section-title">16. Modules & Imports</div>
+
+    <div class="item">
+
+        <div class="item-name">Import</div>
+
+        <div class="code">import math
+
+math.sqrt(16)
+math.pi</div>
+
+        <div class="item-description">
+            Use functionality from another module.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Specific Function</div>
+
+        <div class="code">from random import randint
+
+print(randint(1, 10))</div>
+
+        <div class="item-description">
+            Import a specific function.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     17. BUILT-IN FUNCTIONS
+======================================================== -->
+
+<section class="section" id="builtins">
+
+    <div class="section-title">17. Common Built-in Functions</div>
+
+    <div class="item">
+
+        <div class="item-name">Functions</div>
+
+        <div class="code">len()
+sum()
+min()
+max()
+sorted()
+range()
+enumerate()
+zip()
+map()
+filter()
+abs()
+round()
+any()
+all()
+type()</div>
+
+        <div class="item-description">
+            Frequently used Python built-in functions.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     18. ENUMERATE & ZIP
+======================================================== -->
+
+<section class="section">
+
+    <div class="section-title">18. Enumerate & Zip</div>
+
+    <div class="item">
+
+        <div class="item-name">Enumerate</div>
+
+        <div class="code">names = ["Alice", "Bob"]
+
+for i, name in enumerate(names):
+    print(i, name)</div>
+
+        <div class="item-description">
+            Get index and value while looping.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Zip</div>
+
+        <div class="code">names = ["Alice", "Bob"]
+ages = [20, 25]
+
+for name, age in zip(names, ages):
+    print(name, age)</div>
+
+        <div class="item-description">
+            Loop through multiple sequences together.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     19. RANGE
+======================================================== -->
+
+<section class="section">
+
+    <div class="section-title">19. Range</div>
+
+    <div class="item">
+
+        <div class="item-name">Examples</div>
+
+        <div class="code">range(5)
+range(1, 6)
+range(0, 10, 2)</div>
+
+        <div class="item-description">
+            <strong>range(5)</strong> → 0–4<br>
+            <strong>range(1, 6)</strong> → 1–5<br>
+            <strong>range(0, 10, 2)</strong> → 0, 2, 4, 6, 8
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     20. PATTERNS
+======================================================== -->
+
+<section class="section" id="patterns">
+
+    <div class="section-title">20. Useful Python Patterns</div>
+
+    <div class="item">
+
+        <div class="item-name">Swap</div>
+        <div class="code">a, b = b, a</div>
+        <div class="item-description">Swap two values.</div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Ternary</div>
+        <div class="code">status = "Adult" if age >= 18 else "Minor"</div>
+        <div class="item-description">
+            One-line conditional expression.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Membership</div>
+
+        <div class="code">if "apple" in fruits:
+    print("Found")</div>
+
+        <div class="item-description">
+            Check whether an item exists.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Reverse</div>
+        <div class="code">reversed_list = numbers[::-1]</div>
+        <div class="item-description">
+            Reverse a sequence.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Remove Duplicates</div>
+        <div class="code">unique = list(set(numbers))</div>
+        <div class="item-description">
+            Remove duplicate values.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     21. VENV & PIP
+======================================================== -->
+
+<section class="section" id="venv">
+
+    <div class="section-title">21. Virtual Environment & pip</div>
+
+    <div class="item">
+        <div class="item-name">Create</div>
+        <div class="code">python -m venv venv</div>
+        <div class="item-description">
+            Create a virtual environment.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Windows</div>
+        <div class="code">venv\Scripts\activate</div>
+        <div class="item-description">
+            Activate on Windows.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Linux / macOS</div>
+        <div class="code">source venv/bin/activate</div>
+        <div class="item-description">
+            Activate on Linux or macOS.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Install</div>
+        <div class="code">pip install package_name</div>
+        <div class="item-description">
+            Install a Python package.
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-name">Requirements</div>
+
+        <div class="code">pip freeze > requirements.txt
+pip install -r requirements.txt</div>
+
+        <div class="item-description">
+            Save and install dependencies.
+        </div>
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     22. LIBRARIES
+======================================================== -->
+
+<section class="section" id="libraries">
+
+    <div class="section-title">22. Common Python Libraries</div>
+
+    <div class="item">
+
+        <div class="item-name">Libraries</div>
+
+        <div class="code">math
+random
+datetime
+os
+sys
+json
+re
+pathlib
+requests
+numpy
+pandas
+matplotlib
+scikit-learn</div>
+
+        <div class="item-description">
+            Math, random numbers, dates, OS operations,
+            JSON, regular expressions, file paths, HTTP,
+            numerical computing, data analysis,
+            visualization and machine learning.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     23. MAIN PROGRAM
+======================================================== -->
+
+<section class="section" id="main">
+
+    <div class="section-title">23. Main Program</div>
+
+    <div class="item">
+
+        <div class="item-name">Entry Point</div>
+
+        <div class="code">def main():
+    print("Hello")
+
+if __name__ == "__main__":
+    main()</div>
+
+        <div class="item-description">
+            Common pattern for running a Python script directly.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     24. DEBUGGING
+======================================================== -->
+
+<section class="section" id="debugging">
+
+    <div class="section-title">24. Debugging</div>
+
+    <div class="item">
+
+        <div class="item-name">Inspect</div>
+
+        <div class="code">print(variable)
+print(type(variable))
+print(dir(variable))</div>
+
+        <div class="item-description">
+            Inspect values, types and available attributes.
+        </div>
+
+    </div>
+
+    <div class="item">
+
+        <div class="item-name">Assert</div>
+
+        <div class="code">assert age >= 0
+assert x == 10, "x must be 10"</div>
+
+        <div class="item-description">
+            Check assumptions while developing.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     25. KEYWORDS
+======================================================== -->
+
+<section class="section" id="keywords">
+
+    <div class="section-title">25. Important Python Keywords</div>
+
+    <div class="item">
+
+        <div class="item-name">Keywords</div>
+
+        <div class="code">if      elif    else
+for     while   break
+continue pass    def
+return  class   import
+from    as      try
+except  finally raise
+with    lambda  yield
+in      is      and
+or      not     True
+False   None</div>
+
+        <div class="item-description">
+            Important reserved words used in Python.
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================== -->
+
+<footer class="footer">
+
+    <strong>🐍 Python Cheat Sheet</strong>
+
+    <br><br>
+
+    Save as
+    <code>python_cheatsheet.html</code>
+    and open it in Chrome, Edge, Firefox or Safari.
+
+    <br>
+
+    You can also print it or save it as PDF.
+
+</footer>
+
+
+</div>
+
+
+<!-- =======================================================
+     SEARCH SCRIPT
+======================================================== -->
+
+<script>
+
+const search = document.getElementById("search");
+const sections = document.querySelectorAll(".section");
+
+search.addEventListener("input", function () {
+
+    const query = this.value.toLowerCase().trim();
+
+    sections.forEach(section => {
+
+        const text = section.textContent.toLowerCase();
+
+        if (text.includes(query)) {
+            section.style.display = "";
+        } else {
+            section.style.display = "none";
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
