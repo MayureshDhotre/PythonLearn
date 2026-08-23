@@ -1,5 +1,8 @@
+# ollama run qwen2.5:1.5b-instruct
+
 from openai import OpenAI
 import time
+
 
 
 client = OpenAI(
