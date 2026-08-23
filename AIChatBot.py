@@ -17,10 +17,13 @@ while flag == True:
         flag = False
     else:
         response = client.chat.completions.create(
-            model="qwen2.5:0.5b-instruct",
+            model="qwen2.5:1.5b-instruct",
             temperature=0.6,
             messages=[
-                {"role": "system", "content": "Be very precise"},
+                {
+                    "role": "system",
+                    "content": "You are SQL Server DBA and handle only SQL Server related questions. Reject any other questions.",
+                },
                 {
                     "role": "user",
                     "content": user_string,
@@ -31,4 +34,5 @@ while flag == True:
         end = time.perf_counter()
 
         print(f"Cooked in : {end - start:.4f} seconds")
+        # print(f"Bot: {response}")
         print(f"Bot: {response.choices[0].message.content}")
